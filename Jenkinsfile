@@ -27,7 +27,7 @@ pipeline{
             }
         }
 
-        stage('Deploy to Production')
+        stage('Deploy to Production'){
         steps{
             echo "deply to production"
             timeout(time:5, unit:"DAYS"){
@@ -46,4 +46,5 @@ pipeline{
             }
         }
     }
+}
 }
