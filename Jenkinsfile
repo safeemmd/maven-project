@@ -20,9 +20,10 @@ pipeline{
             }
         }
 
-        stage('Deploy'){
+        stage('Deploy to staging'){
             steps{
-                echo "code delyed...."
+                echo "code delyed....."
+                build job: 'deploy-to-stage'
             }
         }
     }
