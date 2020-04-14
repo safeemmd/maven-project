@@ -7,7 +7,7 @@ pipeline{
 
                 }
             }
-        }
+        
         stage('Build'){
             steps {
                 echo "we are testing the aplication"
@@ -19,9 +19,6 @@ pipeline{
                 echo "application deployed"
             }
         }
-
-    
-
-
+        }
     
 }
