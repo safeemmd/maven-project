@@ -2,20 +2,20 @@ pipeline{
     agent any
         stages{
             stage('init'){
-                step {
+                steps {
                     echo "initization of code....."
 
                 }
             }
         }
         stage('Build'){
-            step {
+            steps {
                 echo "we are testing the aplication"
             }
 
         }
         stage('Deploy'){
-            step{
+            steps{
                 echo "application deployed"
             }
         }
