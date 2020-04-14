@@ -8,15 +8,15 @@ pipeline{
                 }
             }
         
-        stage('Build'){
-            steps {
-                echo "we are testing the aplication"
+            stage('Build'){
+                steps {
+                    echo "we are testing the aplication"
             }
 
         }
-        stage('Deploy'){
-            steps{
-                echo "application deployed"
+            stage('Deploy'){
+                steps{
+                    echo "application deployed"
             }
         }
         }
