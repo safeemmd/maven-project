@@ -10,7 +10,7 @@ pipeline{
         stage('Build'){
             steps{
                 echo "Building...."
-                sh 'mvn clean package' 
+                sh 'mvn clean package'
             }
             post{
                 success{
@@ -20,10 +20,14 @@ pipeline{
             }
         }
 
-        stage('Deploy'){
+        stage('Deploy to staging'){
             steps{
-                echo "code delyed...."
+                echo "code delyed....."
+                build job: 'deploy-to-stage'
             }
         }
+
+        
     }
+}
 }
