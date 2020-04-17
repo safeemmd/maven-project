@@ -1,52 +1,42 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('Init'){
-            steps{
-                echo "Testing...."
-            }
-        }
 
+    parameters {
+         string(name: 'tomcat_dev', defaultValue: '13.232.242.252', description: 'Staging Server')
+         string(name: 'tomcat_prod', defaultValue: '13.235.83.196', description: 'Production Server')
+    }
+
+    triggers {
+         pollSCM('* * * * *')
+     }
+
+stages{
         stage('Build'){
-            steps{
-                echo "Building...."
+            steps {
                 sh 'mvn clean package'
             }
-            post{
-                success{
-                    echo "now archiving..."
+            post {
+                success {
+                    echo 'Now Archiving...'
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
         }
 
-        stage('Deploy to staging'){
-            steps{
-                echo "code delyed....."
-                build job: 'deploy-to-stage'
+        stage ('Deployments'){
+            parallel{
+                stage ('Deploy to Staging'){
+                    steps {
+                        sh "scp -i /d/AWS/7pmbatchmumbai.pem **/target/*.war ec2-user@${params.tomcat_dev}:/home/ec2-user/apache-tomcat-8.5.53/webapps"
+                    }
+                }
+
+                stage ("Deploy to Production"){
+                    steps {
+                        sh "scp -i /d/AWS/7pmbatchmumbai.pem **/target/*.war ec2-user@${params.tomcat_prod}:/home/ec2-user/apache-tomcat-8.5.53/webapps"
+                    }
+                }
             }
         }
-
-        stage('Deploy to Production'){
-        steps{
-            echo "deploy to production"
-            timeout(time:5, unit:"DAYS"){
-                input message:'Approve PRODUCTION Deployment ?'
-            }
-            build job: 'deploy-to-prod'
-        }
-
-        post {
-            success {
-                echo "code deployed to producion"
-            }
-
-            failure{
-                echo "Deployment Failed"
-            }
-        }
-
-        
     }
-}
 }
