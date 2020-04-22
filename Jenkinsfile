@@ -27,13 +27,13 @@ stages{
             parallel{
                 stage ('Deploy to test'){
                     steps {
-                        sh "scp -i /tmp/7pmbatchmumbai.pem **/target/*.war ec2-user@${params.tomcat_test}:/tmp"
+                        sh "scp -i /tmp/7pmbatchmumbai.pem StrictHostKeyChecking=no **/target/*.war ec2-user@${params.tomcat_test}:/tmp"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "scp -i /tmp/7pmbatchmumbai.pem **/target/*.war ec2-user@${params.tomcat_prod}:/tmp"
+                        sh "scp -i /tmp/7pmbatchmumbai.pem StrictHostKeyChecking=no **/target/*.war ec2-user@${params.tomcat_prod}:/tmp"
                     }
                 }
             }
