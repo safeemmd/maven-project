@@ -27,7 +27,7 @@ stages{
             parallel{
                 stage ('Deploy to test'){
                     steps {
-                        sh "scp -i /tmp/7pmbatchmumbai.pem **/target/*.war ec2-user@${params.tomcat_test}:/tmp"
+                        sh "scp -i /home/ec2-user/7pmbatchmumbai.pem a.txt ec2-user@${params.tomcat_test}:/tmp"
                     }
                 }
 
