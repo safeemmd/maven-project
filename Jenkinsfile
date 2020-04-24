@@ -37,18 +37,19 @@ stages{
     }
 
         // stage ('Deployments'){
-            parallel{
-                stage ('Deploy to test'){
-                    steps {
-                        sh "scp -i /home/ec2-user/.ssh/id_rsa **/target/*.war ec2-user@${params.tomcat_test}:/home/ec2-user/apache-tomcat-8.5.53/webapps/"
-                    }
-                }
+        //     parallel{
+        //         stage ('Deploy to test'){
+        //             steps {
+        //                 sh "scp -i /home/ec2-user/.ssh/id_rsa **/target/*.war ec2-user@${params.tomcat_test}:/home/ec2-user/apache-tomcat-8.5.53/webapps/"
+        //             }
+        //         }
 
-                stage ("Deploy to Production"){
-                    steps {
-                        sh "scp -i /home/ec2-user/.ssh/id_rsa **/target/*.war ec2-user@${params.tomcat_prod}:/home/ec2-user/apache-tomcat-8.5.53/webapps/"
-                    }
-                }
-            }
-        }
+        //         stage ("Deploy to Production"){
+        //             steps {
+        //                 sh "scp -i /home/ec2-user/.ssh/id_rsa **/target/*.war ec2-user@${params.tomcat_prod}:/home/ec2-user/apache-tomcat-8.5.53/webapps/"
+        //             }
+        //         }
+        //     }
+        // }
+}
 }
