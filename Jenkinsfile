@@ -23,7 +23,20 @@ stages{
             }
         }
 
-        stage ('Deployments'){
+    stage("Method 2 ssh") {
+	steps {
+		sshagent (credentials: ['creds-id']) {
+		sh '''
+            ssh ec2-user@13.233.118.219
+            hostname
+			ls -la
+  			
+		'''
+		}
+	}
+    }
+
+        // stage ('Deployments'){
             parallel{
                 stage ('Deploy to test'){
                     steps {
