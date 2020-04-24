@@ -27,9 +27,7 @@ stages{
 	steps {
 		sshagent (credentials: ['creds-id']) {
 		sh '''
-            ssh ec2-user@13.233.118.219
-            hostname
-			ls -la
+            ssh ec2-user@13.233.118.219 'hostname && ls -la'
   			
 		'''
 		}
