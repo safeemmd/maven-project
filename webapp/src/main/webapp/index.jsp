@@ -1,1 +1,1 @@
-Hello, this is first jenkins pipeline!
+Hello, world!
