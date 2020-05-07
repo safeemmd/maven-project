@@ -1,1 +1,1 @@
-Hello, now we are starting kubertes!
+Hello, first trigger!
