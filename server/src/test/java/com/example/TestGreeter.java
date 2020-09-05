@@ -17,16 +17,16 @@ public class TestGreeter {
     greeter = new Greeter();
   }
 
-
+  @Test
   public void greetShouldIncludeTheOneBeingGreeted() {
-    String someone = "World"
+    String someone = "World";
 
     assertThat(greeter.greet(someone), containsString(someone));
   }
 
   @Test
   public void greetShouldIncludeGreetingPhrase() {
-    String someone = "World"
+    String someone = "World";
 
     assertThat(greeter.greet(someone).length(), is(greaterThan(someone.length())));
   }
