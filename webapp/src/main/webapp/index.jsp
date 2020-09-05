@@ -1,1 +1,1 @@
-Hello, new change 6.18!
+Hello, poll scm example!
